@@ -3,7 +3,10 @@ package cpbove;
 import heineman.Klondike;
 import heineman.klondike.BuildablePileController;
 import ks.client.gamefactory.GameWindow;
+import ks.common.controller.SolitaireMouseMotionAdapter;
+import ks.common.controller.SolitaireReleasedAdapter;
 import ks.common.games.Solitaire;
+import ks.common.games.SolitaireUndoAdapter;
 import ks.common.model.BuildablePile;
 import ks.common.model.Card;
 import ks.common.model.Column;
@@ -79,7 +82,23 @@ public class Stalactites extends Solitaire{
 	}
 
 	private void initializeControllers() {
-		// TODO Auto-generated method stub
+		
+		
+		// Ensure that any releases (and movement) are handled by the non-interactive widgets
+		numLeftView.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
+		numLeftView.setMouseAdapter (new SolitaireReleasedAdapter(this));
+		numLeftView.setUndoAdapter (new SolitaireUndoAdapter(this));
+
+		// same for scoreView
+		scoreView.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
+		scoreView.setMouseAdapter (new SolitaireReleasedAdapter(this));
+		scoreView.setUndoAdapter (new SolitaireUndoAdapter(this));
+
+		// Finally, cover the Container for any events not handled by a widget:
+		getContainer().setMouseMotionAdapter(new SolitaireMouseMotionAdapter(this));
+		getContainer().setMouseAdapter (new SolitaireReleasedAdapter(this));
+		getContainer().setUndoAdapter (new SolitaireUndoAdapter(this));
+
 		
 	}
 
