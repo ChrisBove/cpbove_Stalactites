@@ -156,7 +156,7 @@ public class Stalactites extends Solitaire{
 		}
 		
 		updateScore(0);
-		updateNumberCardsLeft (52);
+		updateNumberCardsLeft (48);
 		
 		playStyle = PlayStyle.ONES; // TODO default for now, need to let player pick
 		
