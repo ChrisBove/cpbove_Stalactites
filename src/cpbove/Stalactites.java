@@ -56,7 +56,26 @@ public class Stalactites extends Solitaire{
 		initializeView();
 		initializeControllers();
 
+		// prep game by dealing to four foundation bases first
+		for (int baseNum = 0; baseNum < foundationBases.length; baseNum++) {
+			Card c = deck.get();
+			
+			c.setFaceUp(true);
+			foundationBases[baseNum].add(c);
+		}
 		
+		// then deal remaining cards to columns (row by row)
+		int remainingCards = deck.count();
+		for (int row = 0; row < remainingCards/columns.length; row++){
+			for (int col = 0; col < columns.length; col++){
+				Card c = deck.get();
+				
+				c.setFaceUp(true);
+				columns[col].add(c);
+				
+			}
+		}
+
 	}
 
 	private void initializeControllers() {
@@ -111,15 +130,12 @@ public class Stalactites extends Solitaire{
 		deck = new Deck("deck");
 		deck.create(seed);
 		model.addElement (deck);   // add to our model (as defined within our superclass).
-		
-		System.out.println("made a deck");
 
 		for (int i = 0; i < columns.length; i++){
 			columns[i] = new Column("Column"+i);
 			model.addElement(columns[i]);
 		}
 		
-		System.out.println("made columns");
 		
 		// label these as foundations
 		for (int i = 0; i < foundations.length; i++){
@@ -138,8 +154,6 @@ public class Stalactites extends Solitaire{
 			cells[i] = new Pile("Cell"+i);
 			model.addElement(cells[i]);
 		}
-		
-		System.out.println("I made it");
 		
 		updateScore(0);
 		updateNumberCardsLeft (52);
