@@ -16,10 +16,12 @@ pile if the cell is currently empty. Score and remaining cards numbers do not ch
 public class TableauToCellMove extends Move{
 	Column column;
 	Pile cell;
+	Card draggedCard;
 	
-	public TableauToCellMove(Column column, Pile cell) {
+	public TableauToCellMove(Column column, Card draggedCard, Pile cell) {
 		this.column = column;
 		this.cell = cell;
+		this.draggedCard = draggedCard;
 	}
 
 	@Override
@@ -28,8 +30,7 @@ public class TableauToCellMove extends Move{
 			return false;
 		}
 		
-		Card c = column.get();
-		cell.add(c);
+		cell.add(draggedCard);
 		
 		return true;
 	}

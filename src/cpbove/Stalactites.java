@@ -90,12 +90,12 @@ public class Stalactites extends Solitaire{
 		}
 		
 		// now for each cell
-//		for (int i = 0; i < cellViews.length; i++) {
-//			cellViews[i].setMouseAdapter (new StalactiteCellController (this, cellViews[i]));
-//			cellViews[i].setMouseMotionAdapter (new SolitaireMouseMotionAdapter (this));
-//			cellViews[i].setUndoAdapter (new SolitaireUndoAdapter(this));
-//		}
-//		
+		for (int i = 0; i < cellViews.length; i++) {
+			cellViews[i].setMouseAdapter (new StalactitesCellController (this, cellViews[i]));
+			cellViews[i].setMouseMotionAdapter (new SolitaireMouseMotionAdapter (this));
+			cellViews[i].setUndoAdapter (new SolitaireUndoAdapter(this));
+		}
+		
 //		// for each foundation
 //		for (int i = 0; i < foundations.length; i++) {
 //			foundationViews[i].setMouseAdapter (new StalactiteFoundationController (this, foundationViews[i]));
