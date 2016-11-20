@@ -5,10 +5,12 @@ import java.awt.event.MouseEvent;
 import heineman.klondike.FlipCardMove;
 import ks.common.controller.SolitaireReleasedAdapter;
 import ks.common.model.BuildablePile;
+import ks.common.model.Card;
 import ks.common.model.Column;
 import ks.common.model.Deck;
 import ks.common.model.Move;
 import ks.common.model.Pile;
+import ks.common.view.CardView;
 import ks.common.view.ColumnView;
 import ks.common.view.Container;
 import ks.common.view.Widget;
@@ -34,7 +36,6 @@ public class StalactiteColumnController extends SolitaireReleasedAdapter {
 	 * Coordinate reaction to the beginning of a Drag Event.
 	 */
 	public void mousePressed(MouseEvent me) {
-
 		// The container manages several critical pieces of information; namely, it
 		// is responsible for the draggingObject; in our case, this would be a CardView
 		// Widget managing the card we are trying to drag between two piles.
@@ -46,19 +47,19 @@ public class StalactiteColumnController extends SolitaireReleasedAdapter {
 			return;
 		}
 
-		// Get a column of cards to move from the BuildablePileView
-		// Note that this method will alter the model for BuildablePileView if the condition is met.
-		ColumnView colView = columnView.getColumnView (me);
+		// Get the card to move from the column
+		// Note that this method will alter the model for ColumnView if the condition is met.
+		CardView cardView = columnView.getCardViewForTopCard(me);
 
-		// an invalid selection (either all facedown, or not in faceup region)
-		if (colView == null) {
+		// an invalid selection
+		if (cardView == null) {
 			return;
 		}
 
 		// Check conditions
-		Column col = (Column) colView.getModelElement();
-		if (col == null) {
-			System.err.println ("BuildablePileController::mousePressed(): Unexpectedly encountered a ColumnView with no Column.");
+		Card card = (Card) cardView.getModelElement();
+		if (card == null) {
+			System.err.println ("ColumnController::mousePressed(): Unexpectedly encountered a CardView with no Card.");
 			return; // sanity check, but should never happen.
 		}
 
@@ -67,14 +68,14 @@ public class StalactiteColumnController extends SolitaireReleasedAdapter {
 		// cardView widget reflect the original card location on the screen.
 		Widget w = c.getActiveDraggingObject();
 		if (w != Container.getNothingBeingDragged()) {
-			System.err.println ("BuildablePileController::mousePressed(): Unexpectedly encountered a Dragging Object during a Mouse press.");
+			System.err.println ("ColumnController::mousePressed(): Unexpectedly encountered a Dragging Object during a Mouse press.");
 			return;
 		}
 
 		// Tell container which object is being dragged, and where in that widget the user clicked.
-		c.setActiveDraggingObject (colView, me);
+		c.setActiveDraggingObject (cardView, me);
 
-		// Tell container which BuildablePileView is the source for this drag event.
+		// Tell container which ColumnView is the source for this drag event.
 		c.setDragSource (columnView);
 
 		// we simply redraw our source pile to avoid flicker,
