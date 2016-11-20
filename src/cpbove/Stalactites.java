@@ -82,7 +82,26 @@ public class Stalactites extends Solitaire{
 	}
 
 	private void initializeControllers() {
+		// Now for each column.
+		for (int i = 0; i < columnViews.length; i++) {
+			columnViews[i].setMouseAdapter (new StalactiteColumnController (this, columnViews[i]));
+			columnViews[i].setMouseMotionAdapter (new SolitaireMouseMotionAdapter (this));
+			columnViews[i].setUndoAdapter (new SolitaireUndoAdapter(this));
+		}
 		
+		// now for each cell
+//		for (int i = 0; i < cellViews.length; i++) {
+//			cellViews[i].setMouseAdapter (new StalactiteCellController (this, cellViews[i]));
+//			cellViews[i].setMouseMotionAdapter (new SolitaireMouseMotionAdapter (this));
+//			cellViews[i].setUndoAdapter (new SolitaireUndoAdapter(this));
+//		}
+//		
+//		// for each foundation
+//		for (int i = 0; i < foundations.length; i++) {
+//			foundationViews[i].setMouseAdapter (new StalactiteFoundationController (this, foundationViews[i]));
+//			foundationViews[i].setMouseMotionAdapter (new SolitaireMouseMotionAdapter (this));
+//			foundationViews[i].setUndoAdapter (new SolitaireUndoAdapter(this));
+//		}
 		
 		// Ensure that any releases (and movement) are handled by the non-interactive widgets
 		numLeftView.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
@@ -93,6 +112,13 @@ public class Stalactites extends Solitaire{
 		scoreView.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
 		scoreView.setMouseAdapter (new SolitaireReleasedAdapter(this));
 		scoreView.setUndoAdapter (new SolitaireUndoAdapter(this));
+		
+		//same for foundation base cards
+		for (int i = 0; i < foundationBaseViews.length; i++) {
+			foundationBaseViews[i].setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
+			foundationBaseViews[i].setMouseAdapter (new SolitaireReleasedAdapter(this));
+			foundationBaseViews[i].setUndoAdapter (new SolitaireUndoAdapter(this));
+		}
 
 		// Finally, cover the Container for any events not handled by a widget:
 		getContainer().setMouseMotionAdapter(new SolitaireMouseMotionAdapter(this));
