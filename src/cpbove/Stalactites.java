@@ -46,8 +46,7 @@ public class Stalactites extends Solitaire{
 
 	@Override
 	public boolean hasWon() {
-		// TODO finish this
-		return false;
+		return getScore().getValue() == 48;
 	}
 
 	@Override
