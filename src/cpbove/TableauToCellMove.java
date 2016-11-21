@@ -48,7 +48,7 @@ public class TableauToCellMove extends Move{
 
 	@Override
 	public boolean valid(Solitaire game) {
-		return !column.empty() && cell.empty();
+		return cell.empty();
 	}
 
 }
