@@ -37,27 +37,7 @@ public class StackToFoundationMove extends Move{
 
 	@Override
 	public boolean doMove(Solitaire game) {
-		// determine play style if unknown
-		if (style == PlayStyle.UNKOWN) {
-			// try setting to ones
-			style = PlayStyle.ONES;
-			if(valid(game)){
-				initializedStyle = true;
-			}
-			// try setting to twos
-			else{
-				style = PlayStyle.TWOS;
-				if(valid(game)){
-					initializedStyle = true;
-				}
-				else {
-					// didn't work. return false
-					style = PlayStyle.UNKOWN;
-					return false;
-				}
-			}
-		}
-		else if (!valid(game)){
+		if (!valid(game)){
 			return false;
 		}
 		
@@ -90,24 +70,50 @@ public class StackToFoundationMove extends Move{
 
 	@Override
 	public boolean valid(Solitaire game) {
-		// 13-1 since one card is on the base pile
-		if(foundation.count() == 12)
+		// determine play style if unknown
+		if (style == PlayStyle.UNKOWN) {
+			// try setting to ones
+			style = PlayStyle.ONES;
+			if(valid(game)){
+				initializedStyle = true;
+				return true;
+			}
+			// try setting to twos
+			else{
+				style = PlayStyle.TWOS;
+				if(valid(game)){
+					initializedStyle = true;
+					return true;
+				}
+				else {
+					// didn't work. return false
+					style = PlayStyle.UNKOWN;
+					return false;
+				}
+			}
+		}
+		else {
+			// play style has been determined (or is being tested)
+
+			// 13-1 since one card is on the base pile
+			if(foundation.count() == 12)
+				return false;
+			// if foundation is empty, check against the base foundation
+			int compareVal; //If zero, then cards have the same rank. If negative, existing card lesser than target by that amount; similar for positive results.
+
+			if(foundation.empty())
+				compareVal = draggedCard.compareTo(foundationBase.peek());
+			else
+				compareVal = draggedCard.compareTo(foundation.peek());
+
+			// remember the wrap around from K to A or Q to A
+			if(style == PlayStyle.TWOS)
+				return compareVal == 2 || compareVal == -11;
+			else if (style == PlayStyle.ONES)
+				return compareVal == 1 || compareVal == -12;
+			else
+				System.err.println("StackToFoundationMove: Unknown PlayStyle");
 			return false;
-		// if foundation is empty, check against the base foundation
-		int compareVal; //If zero, then cards have the same rank. If negative, existing card lesser than target by that amount; similar for positive results.
-		
-		if(foundation.empty())
-			compareVal = draggedCard.compareTo(foundationBase.peek());
-		else
-			compareVal = draggedCard.compareTo(foundation.peek());
-		
-		// remember the wrap around from K to A or Q to A
-		if(style == PlayStyle.TWOS)
-			return compareVal == 2 || compareVal == -11;
-		else if (style == PlayStyle.ONES)
-			return compareVal == 1 || compareVal == -12;
-		else
-			System.err.println("StackToFoundationMove: Unknown PlayStyle");
-		return false;
+		}
 	}
 }
