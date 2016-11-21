@@ -65,7 +65,6 @@ public class StalactitesFoundationController extends java.awt.event.MouseAdapter
 
 		if (fromWidget instanceof ColumnView) {
 			Column fromPile = (Column) fromWidget.getModelElement();
-			System.out.println("Number of objects in from column: "+fromPile.count());
 
 			/** Must be the CardView widget being dragged. */
 			CardView cardView = (CardView) draggingWidget;
@@ -88,7 +87,6 @@ public class StalactitesFoundationController extends java.awt.event.MouseAdapter
 		// else from PileView from cell
 		else {
 			Pile fromPile = (Pile) fromWidget.getModelElement();
-			System.out.println("Number of objects in from Pile: "+fromPile.count());
 
 			/** Must be the CardView widget being dragged. */
 			CardView cardView = (CardView) draggingWidget;

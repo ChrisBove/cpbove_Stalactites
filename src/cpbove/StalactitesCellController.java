@@ -67,7 +67,6 @@ public class StalactitesCellController extends java.awt.event.MouseAdapter {
 
 		if (fromWidget instanceof ColumnView) {
 			Column fromPile = (Column) fromWidget.getModelElement();
-			System.out.println("Number of objects in from column: "+fromPile.count());
 
 			/** Must be the CardView widget being dragged. */
 			CardView cardView = (CardView) draggingWidget;
