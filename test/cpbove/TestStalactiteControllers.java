@@ -45,15 +45,16 @@ public class TestStalactiteControllers extends KSTestCase {
 		assertEquals (onTop, inCell);
 		
 		// try to drop the cell onto the right foundation
+		// pick up cell
 		MouseEvent pr2 = createPressed (game,game.cellViews[0], 0, 0);
 		game.cellViews[0].getMouseManager().handleMouseEvent(pr2);
 		assertEquals(0, game.cells[0].count());
-		
+		// drop onto foundation
 		MouseEvent re2 = createReleased(game, game.foundationViews[0], 0, 0);
 		game.foundationViews[0].getMouseManager().handleMouseEvent(re2);
+		
 		Card inFoundation = game.foundations[0].peek();
 		assertEquals(1, game.foundations[0].count());
-		
 		assertEquals(onTop, inFoundation);
 	}
 	
@@ -72,12 +73,13 @@ public class TestStalactiteControllers extends KSTestCase {
 		game.foundationViews[0].getMouseManager().handleMouseEvent(re2);
 		Card inFoundation = game.foundations[0].peek();
 		assertEquals(1, game.foundations[0].count());
-		
 		assertEquals(onTop, inFoundation);
 		
 	}
 	
 	public void testHasWon() {
+		// truly, this should try moving all the cards through in the proper solution, but the condition
+		// simply checks this number any way, and we already know adding cards to the foundation works
 		Stalactites game = new Stalactites();
 		GameWindow gw = Main.generateWindow(game, Deck.OrderBySuit);
 		

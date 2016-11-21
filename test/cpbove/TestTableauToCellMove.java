@@ -14,10 +14,10 @@ public class TestTableauToCellMove extends TestCase {
 		Card topCardValue = stalactites.columns[0].peek();
 		Card topCard = stalactites.columns[0].get();
 		
+		// move tablea card to cell
 		TableauToCellMove t2CM = new TableauToCellMove(stalactites.columns[0], topCard, stalactites.cells[0]);
 		
 		assertTrue(t2CM.valid(stalactites));
-		
 		assertTrue(t2CM.doMove(stalactites));
 		
 		assertEquals(1, stalactites.cells[0].count());
@@ -56,14 +56,11 @@ public class TestTableauToCellMove extends TestCase {
 		assertFalse(t2CM_2.doMove(stalactites));
 
 		assertEquals(topCard, stalactites.cells[0].peek());
-		
 		assertEquals(1, stalactites.cells[0].count());
 		assertEquals(4, stalactites.columns[0].count());
+		assertEquals(47, stalactites.getNumLeft().getValue());
 		
-		int numLeft = stalactites.getNumLeft().getValue();
-		assertEquals(47, numLeft);
-		
-		// try adding that removed card back
+		// try adding that removed card back (controller normally does this)
 		stalactites.columns[0].add(secondCard);
 		assertEquals(secondCardVal, stalactites.columns[0].peek());
 	}
