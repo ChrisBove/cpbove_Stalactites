@@ -6,6 +6,7 @@ import ks.common.model.Card;
 import ks.common.model.Column;
 import ks.common.model.Move;
 import ks.common.model.Pile;
+import ks.common.model.Stack;
 import ks.common.view.CardView;
 import ks.common.view.ColumnView;
 import ks.common.view.Container;
@@ -60,52 +61,26 @@ public class StalactitesFoundationController extends java.awt.event.MouseAdapter
 		// Determine the To Pile
 		Pile foundation = (Pile) src.getModelElement();
 		
-		// cards entering the cell can only come from the tableau
-		
+		Stack fromPile = (Stack) fromWidget.getModelElement();
 
-		if (fromWidget instanceof ColumnView) {
-			Column fromPile = (Column) fromWidget.getModelElement();
-
-			/** Must be the CardView widget being dragged. */
-			CardView cardView = (CardView) draggingWidget;
-			Card theCard = (Card) cardView.getModelElement();
-			if (theCard == null) {
-				System.err.println ("CellController::mouseReleased(): somehow CardView model element is null.");
-				c.releaseDraggingObject();
-				return;
-			}
-
-			// must use peek() so we don't modify col prematurely
-			Move m = new TableauToFoundationMove(fromPile, theCard, foundation,foundationBase, theGame.playStyle);
-			if (m.doMove (theGame)) {
-				// Success
-				theGame.pushMove (m);
-			} else {
-				fromWidget.returnWidget (draggingWidget);
-			}
+		/** Must be the CardView widget being dragged. */
+		CardView cardView = (CardView) draggingWidget;
+		Card theCard = (Card) cardView.getModelElement();
+		if (theCard == null) {
+			System.err.println ("CellController::mouseReleased(): somehow CardView model element is null.");
+			c.releaseDraggingObject();
+			return;
 		}
-		// else from PileView from cell
-		else {
-			Pile fromPile = (Pile) fromWidget.getModelElement();
 
-			/** Must be the CardView widget being dragged. */
-			CardView cardView = (CardView) draggingWidget;
-			Card theCard = (Card) cardView.getModelElement();
-			if (theCard == null) {
-				System.err.println ("CellController::mouseReleased(): somehow CardView model element is null.");
-				c.releaseDraggingObject();
-				return;
-			}
-
-			// must use peek() so we don't modify col prematurely
-			Move m = new CellToFoundationMove(fromPile, theCard, foundation,foundationBase, theGame.playStyle);
-			if (m.doMove (theGame)) {
-				// Success
-				theGame.pushMove (m);
-			} else {
-				fromWidget.returnWidget (draggingWidget);
-			}
+		// must use peek() so we don't modify col prematurely
+		Move m = new StackToFoundationMove(fromPile, theCard, foundation,foundationBase);
+		if (m.doMove (theGame)) {
+			// Success
+			theGame.pushMove (m);
+		} else {
+			fromWidget.returnWidget (draggingWidget);
 		}
+	
 
 		// Ahhhh. Instead of dealing with multiple 'instanceof' difficulty, why don't we allow
 		// for multiple controllers to be set on the same widget? Each will be invoked, one

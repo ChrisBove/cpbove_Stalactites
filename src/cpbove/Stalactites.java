@@ -21,7 +21,7 @@ import ks.common.view.PileView;
 import ks.launcher.Main;
 
 public class Stalactites extends Solitaire{
-	public enum PlayStyle {ONES,TWOS};
+	public enum PlayStyle {ONES,TWOS, UNKOWN};
 	
 	Deck deck;
 	Column columns[] = new Column [8];
@@ -79,6 +79,10 @@ public class Stalactites extends Solitaire{
 		}
 
 	}
+	
+	public void setPlayStyle(PlayStyle style) {
+		playStyle = style;
+	}
 
 	private void initializeControllers() {
 		// Now for each column.
@@ -123,6 +127,9 @@ public class Stalactites extends Solitaire{
 		getContainer().setMouseMotionAdapter(new SolitaireMouseMotionAdapter(this));
 		getContainer().setMouseAdapter (new SolitaireReleasedAdapter(this));
 		getContainer().setUndoAdapter (new SolitaireUndoAdapter(this));
+		
+		// HACK create a new StackToFoundationMove to reset the static class variables
+		StackToFoundationMove trash = new StackToFoundationMove();
 
 		
 	}
@@ -202,7 +209,7 @@ public class Stalactites extends Solitaire{
 		updateScore(0);
 		updateNumberCardsLeft (48);
 		
-		playStyle = PlayStyle.ONES; // TODO default for now, need to let player pick
+		playStyle = PlayStyle.UNKOWN;
 		
 	}
 	

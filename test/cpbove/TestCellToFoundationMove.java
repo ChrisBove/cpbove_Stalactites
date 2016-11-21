@@ -21,7 +21,7 @@ public class TestCellToFoundationMove extends TestCase {
 		assertTrue(toCellMove.doMove(stalactites));
 		
 		Card fromCell = stalactites.cells[0].get();
-		CellToFoundationMove move = new CellToFoundationMove(stalactites.cells[0], fromCell, stalactites.foundations[0], stalactites.foundationBases[0], stalactites.playStyle);
+		StackToFoundationMove move = new StackToFoundationMove(stalactites.cells[0], fromCell, stalactites.foundations[0], stalactites.foundationBases[0], stalactites.playStyle);
 
 		assertTrue(move.valid(stalactites));
 		
@@ -59,7 +59,7 @@ public class TestCellToFoundationMove extends TestCase {
 		assertTrue(toCellMove.doMove(stalactites));
 		
 		Card fromCell = stalactites.cells[0].get();
-		CellToFoundationMove move = new CellToFoundationMove(stalactites.cells[0], fromCell, stalactites.foundations[0], stalactites.foundationBases[0], stalactites.playStyle);
+		StackToFoundationMove move = new StackToFoundationMove(stalactites.cells[0], fromCell, stalactites.foundations[0], stalactites.foundationBases[0], stalactites.playStyle);
 
 		assertFalse(move.valid(stalactites));
 		
@@ -108,7 +108,7 @@ public class TestCellToFoundationMove extends TestCase {
 		
 		// try moving to foundation
 		Card fromCell = stalactites.cells[0].get();
-		CellToFoundationMove move = new CellToFoundationMove(stalactites.cells[0], fromCell, stalactites.foundations[0], stalactites.foundationBases[0], stalactites.playStyle);
+		StackToFoundationMove move = new StackToFoundationMove(stalactites.cells[0], fromCell, stalactites.foundations[0], stalactites.foundationBases[0], stalactites.playStyle);
 
 		assertTrue(move.valid(stalactites));
 
@@ -123,7 +123,7 @@ public class TestCellToFoundationMove extends TestCase {
 		
 		// try moving to foundation
 		fromCell = stalactites.cells[0].get();
-		move = new CellToFoundationMove(stalactites.cells[0], fromCell, stalactites.foundations[0], stalactites.foundationBases[0], stalactites.playStyle);
+		move = new StackToFoundationMove(stalactites.cells[0], fromCell, stalactites.foundations[0], stalactites.foundationBases[0], stalactites.playStyle);
 
 		assertFalse(move.valid(stalactites));
 
