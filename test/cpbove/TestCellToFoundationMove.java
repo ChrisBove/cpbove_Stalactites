@@ -42,7 +42,7 @@ public class TestCellToFoundationMove extends TestCase {
 		assertEquals(5, stalactites.columns[7].count());
 		assertEquals(topCardValue, stalactites.cells[0].peek());
 		numLeft = stalactites.getNumLeft().getValue();
-		assertEquals(48, numLeft);
+		assertEquals(47, numLeft);
 	}
 	
 	public void testInvalidMoveToEmpty() {
@@ -71,9 +71,9 @@ public class TestCellToFoundationMove extends TestCase {
 		assertEquals(5, stalactites.columns[0].count());
 		assertEquals(topCardValue, stalactites.cells[0].peek());
 		int numLeft = stalactites.getNumLeft().getValue();
-		assertEquals(48, numLeft);
+		assertEquals(47, numLeft);
 		int score = stalactites.getScoreValue();
-		assertEquals(0, score);
+		assertEquals(1, score);
 	}
 	
 	// test moving onto non-empty foundation

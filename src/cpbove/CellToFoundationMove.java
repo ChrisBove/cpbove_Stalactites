@@ -29,8 +29,6 @@ public class CellToFoundationMove extends Move{
 		}
 		
 		foundation.add(draggedCard);
-		game.updateScore(1);
-		game.updateNumberCardsLeft(-1);
 		
 		return true;
 	}
@@ -39,8 +37,7 @@ public class CellToFoundationMove extends Move{
 	public boolean undo(Solitaire game) {
 		Card c = foundation.get();
 		cell.add(c);
-		game.updateNumberCardsLeft(1);
-		game.updateScore(-1);
+		
 		return true;
 	}
 

@@ -31,6 +31,8 @@ public class TableauToCellMove extends Move{
 		}
 		
 		cell.add(draggedCard);
+		game.updateScore(1);
+		game.updateNumberCardsLeft(-1);
 		
 		return true;
 	}
@@ -39,6 +41,8 @@ public class TableauToCellMove extends Move{
 	public boolean undo(Solitaire game) {
 		Card c = cell.get();
 		column.add(c);
+		game.updateNumberCardsLeft(1);
+		game.updateScore(-1);
 		return true;
 	}
 

@@ -23,15 +23,14 @@ public class TestTableauToCellMove extends TestCase {
 		assertEquals(1, stalactites.cells[0].count());
 		assertEquals(5, stalactites.columns[0].count());
 		assertEquals(topCardValue, stalactites.cells[0].peek());
-		int numLeft = stalactites.getNumLeft().getValue();
-		assertEquals(48, numLeft);
+		assertEquals(47, stalactites.getNumLeft().getValue());
 		
 		// undo the move
 		t2CM.undo(stalactites);
 		assertEquals(0, stalactites.cells[0].count());
 		assertEquals(6, stalactites.columns[0].count());
 		assertEquals(topCardValue, stalactites.columns[0].peek());
-		assertEquals(48, numLeft);
+		assertEquals(48, stalactites.getNumLeft().getValue());
 	}
 	
 	public void testInvalid() {
@@ -39,20 +38,21 @@ public class TestTableauToCellMove extends TestCase {
 		Stalactites stalactites = new Stalactites();
 		GameWindow gw = Main.generateWindow(stalactites, Deck.OrderBySuit);
 		
-		// place one card
+		// place one card in cell
 		Card topCard = stalactites.columns[0].get();
-		
 		TableauToCellMove t2CM = new TableauToCellMove(stalactites.columns[0], topCard, stalactites.cells[0]);
-		assertTrue(t2CM.valid(stalactites));
 		
+		// make sure this is still valid
+		assertTrue(t2CM.valid(stalactites));
 		assertTrue(t2CM.doMove(stalactites));
-		// try placing another
+		
+		// try placing another in the same cell, should be false
 		Card secondCardVal = stalactites.columns[0].peek();
 		Card secondCard = stalactites.columns[0].get();
 
 		TableauToCellMove t2CM_2 = new TableauToCellMove(stalactites.columns[0], secondCard, stalactites.cells[0]);
+		
 		assertFalse(t2CM_2.valid(stalactites));
-
 		assertFalse(t2CM_2.doMove(stalactites));
 
 		assertEquals(topCard, stalactites.cells[0].peek());
@@ -61,7 +61,7 @@ public class TestTableauToCellMove extends TestCase {
 		assertEquals(4, stalactites.columns[0].count());
 		
 		int numLeft = stalactites.getNumLeft().getValue();
-		assertEquals(48, numLeft);
+		assertEquals(47, numLeft);
 		
 		// try adding that removed card back
 		stalactites.columns[0].add(secondCard);
