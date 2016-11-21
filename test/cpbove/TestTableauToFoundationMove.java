@@ -1,6 +1,5 @@
 package cpbove;
 
-import cpbove.Stalactites.PlayStyle;
 import junit.framework.TestCase;
 import ks.client.gamefactory.GameWindow;
 import ks.common.model.Card;
@@ -15,7 +14,7 @@ public class TestTableauToFoundationMove extends TestCase {
 		Card topCardValue = stalactites.columns[7].peek();
 		Card topCard = stalactites.columns[7].get();
 		
-		TableauToFoundationMove move = new TableauToFoundationMove(stalactites.columns[7], topCard, stalactites.foundations[0], stalactites.foundationBases[0], stalactites.playStyle);
+		StackToFoundationMove move = new StackToFoundationMove(stalactites.columns[7], topCard, stalactites.foundations[0], stalactites.foundationBases[0]);
 		
 		assertTrue(move.valid(stalactites));
 		
@@ -45,7 +44,7 @@ public class TestTableauToFoundationMove extends TestCase {
 		Card topCardValue = stalactites.columns[0].peek();
 		Card topCard = stalactites.columns[0].get();
 		
-		TableauToFoundationMove move = new TableauToFoundationMove(stalactites.columns[0], topCard, stalactites.foundations[0], stalactites.foundationBases[0], stalactites.playStyle);
+		StackToFoundationMove move = new StackToFoundationMove(stalactites.columns[0], topCard, stalactites.foundations[0], stalactites.foundationBases[0]);
 		
 		assertFalse(move.valid(stalactites));
 		
@@ -70,7 +69,7 @@ public class TestTableauToFoundationMove extends TestCase {
 		for (int col = 7; col >=0; col-- ) {
 			Card topCard = stalactites.columns[col].get();
 
-			TableauToFoundationMove move = new TableauToFoundationMove(stalactites.columns[col], topCard, stalactites.foundations[0], stalactites.foundationBases[0], stalactites.playStyle);
+			StackToFoundationMove move = new StackToFoundationMove(stalactites.columns[col], topCard, stalactites.foundations[0], stalactites.foundationBases[0]);
 
 			assertTrue(move.valid(stalactites));
 
@@ -79,7 +78,7 @@ public class TestTableauToFoundationMove extends TestCase {
 		for (int col = 7; col >=4; col-- ) {
 			Card topCard = stalactites.columns[col].get();
 
-			TableauToFoundationMove move = new TableauToFoundationMove(stalactites.columns[col], topCard, stalactites.foundations[0], stalactites.foundationBases[0], stalactites.playStyle);
+			StackToFoundationMove move = new StackToFoundationMove(stalactites.columns[col], topCard, stalactites.foundations[0], stalactites.foundationBases[0]);
 
 			assertTrue(move.valid(stalactites));
 
@@ -91,7 +90,7 @@ public class TestTableauToFoundationMove extends TestCase {
 		Card topCardValue = stalactites.columns[3].peek();
 		Card topCard = stalactites.columns[3].get();
 		
-		TableauToFoundationMove move = new TableauToFoundationMove(stalactites.columns[7], topCard, stalactites.foundations[0], stalactites.foundationBases[0], stalactites.playStyle);
+		StackToFoundationMove move = new StackToFoundationMove(stalactites.columns[7], topCard, stalactites.foundations[0], stalactites.foundationBases[0]);
 		
 		assertFalse(move.valid(stalactites));
 		
@@ -103,12 +102,10 @@ public class TestTableauToFoundationMove extends TestCase {
 		Stalactites stalactites = new Stalactites();
 		GameWindow gw = Main.generateWindow(stalactites, Deck.OrderBySuit);
 		
-		stalactites.playStyle = PlayStyle.TWOS;
-		
 		Card topCardValue = stalactites.columns[7].peek();
 		Card topCard = stalactites.columns[7].get();
 		
-		TableauToFoundationMove move = new TableauToFoundationMove(stalactites.columns[7], topCard, stalactites.foundations[1], stalactites.foundationBases[1], stalactites.playStyle);
+		StackToFoundationMove move = new StackToFoundationMove(stalactites.columns[7], topCard, stalactites.foundations[1], stalactites.foundationBases[1]);
 		
 		assertTrue(move.valid(stalactites));
 		
