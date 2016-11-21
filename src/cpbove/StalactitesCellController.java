@@ -72,7 +72,7 @@ public class StalactitesCellController extends java.awt.event.MouseAdapter {
 				return;
 			}
 
-			// must use peek() so we don't modify col prematurely
+			// try the move!
 			Move m = new TableauToCellMove(fromPile, theCard, cell);
 			if (m.doMove (theGame)) {
 				// Success
@@ -81,19 +81,10 @@ public class StalactitesCellController extends java.awt.event.MouseAdapter {
 				fromWidget.returnWidget (draggingWidget);
 			}
 		}
-		// this is from another cell. We could cover this move, but this provides no functionality for the user.
+		// this is from another cell. We could cover this move, but this provides no new game play possibilities for the user.
 		else{
 			fromWidget.returnWidget(draggingWidget);
 		}
-
-		// Ahhhh. Instead of dealing with multiple 'instanceof' difficulty, why don't we allow
-		// for multiple controllers to be set on the same widget? Each will be invoked, one
-		// at a time, until someone returns TRUE (stating that they are processing the event).
-		// Then we have controllers for each MOVE TYPE, not just for each entity. In this way,
-		// I wouldn't have to convert the CardView from wastePile into a ColumnView. I would
-		// still have to do some sort of instanceOf check, however, to validate: But if the
-		// instanceof failed, the controller could safely return and say NOT ME! See! There
-		// always is a way to avoid layered if statements in OO.
 
 		// release the dragging object, (this will reset dragSource)
 		c.releaseDraggingObject();

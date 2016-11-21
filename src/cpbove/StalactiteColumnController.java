@@ -17,9 +17,6 @@ public class StalactiteColumnController extends SolitaireReleasedAdapter {
 	/** The Column of interest. */
 	protected ColumnView columnView;
 
-	/**
-	 * KlondikeDeckController constructor comment.
-	 */
 	public StalactiteColumnController(Stalactites theGame, ColumnView columnView) {
 		super(theGame);
 

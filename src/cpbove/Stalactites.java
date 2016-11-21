@@ -16,7 +16,9 @@ import ks.common.view.PileView;
 import ks.launcher.Main;
 
 public class Stalactites extends Solitaire{
+	// by default, these are all package protected
 	
+	// entities/model classes
 	Deck deck;
 	Column columns[] = new Column [8];
 	Pile foundations[] = new Pile [4];
@@ -44,9 +46,6 @@ public class Stalactites extends Solitaire{
 
 	@Override
 	public void initialize() {
-		// TODO
-		// deck of cards to be dealt
-		// initialize model
 		initializeModel(getSeed());
 		initializeView();
 		initializeControllers();
@@ -67,7 +66,6 @@ public class Stalactites extends Solitaire{
 				
 				c.setFaceUp(true);
 				columns[col].add(c);
-				
 			}
 		}
 
@@ -119,14 +117,13 @@ public class Stalactites extends Solitaire{
 		
 		// HACK create a new StackToFoundationMove to reset the static class variables
 		StackToFoundationMove trash = new StackToFoundationMove();
-
 		
 	}
 
 	private void initializeView() {
-		// TODO Auto-generated method stub
 		CardImages ci = getCardImages();
 		
+		// for the column views in the tableau, create them all
 		for (int colNum = 0; colNum < columnViews.length; colNum++) {
 			columnViews[colNum] = new ColumnView(columns[colNum]);
 			columnViews[colNum].setBounds (20+20*colNum + (colNum)*ci.getWidth(), 2*ci.getHeight() + 70, ci.getWidth(), 8*ci.getHeight());
@@ -154,11 +151,13 @@ public class Stalactites extends Solitaire{
 			container.addWidget (cellViews[cellNum]);
 		}
 
+		// create score view
 		scoreView = new IntegerView (getScore());
 		scoreView.setFontSize (24);
 		scoreView.setBounds (20, 20, 2*ci.getWidth() + 20, ci.getHeight()/3);
 		container.addWidget (scoreView);
 
+		// create remaining cards view
 		numLeftView = new IntegerView (getNumLeft());
 		numLeftView.setFontSize (24);
 		numLeftView.setBounds (20, 40+ci.getHeight()/2, 2*ci.getWidth() + 20, ci.getHeight()/3);
@@ -167,34 +166,36 @@ public class Stalactites extends Solitaire{
 	}
 
 	private void initializeModel(int seed) {
+		// this deck is never displayed. it is only dealt out to the board.
 		deck = new Deck("deck");
 		deck.create(seed);
-		model.addElement (deck);   // add to our model (as defined within our superclass).
+		model.addElement (deck);
 
+		// add columns
 		for (int i = 0; i < columns.length; i++){
 			columns[i] = new Column("Column"+i);
 			model.addElement(columns[i]);
 		}
 		
-		
-		// label these as foundations
+		// add foundations
 		for (int i = 0; i < foundations.length; i++){
 			foundations[i] = new Pile("Foundation"+i);
 			model.addElement(foundations[i]);
 		}
 
-		// label these as first card foundations
+		// add first card foundations
 		for (int i = 0; i < foundationBases.length; i++){
 			foundationBases[i] = new Pile("FirstCardFoundation%2d"+i);
 			model.addElement(foundationBases[i]);
 		}
 
-
+		// add our cells
 		for (int i = 0; i < cells.length; i++){
 			cells[i] = new Pile("Cell"+i);
 			model.addElement(cells[i]);
 		}
 		
+		// initialize the scores
 		updateScore(0);
 		updateNumberCardsLeft (48);
 		
