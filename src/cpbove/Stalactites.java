@@ -21,14 +21,12 @@ import ks.common.view.PileView;
 import ks.launcher.Main;
 
 public class Stalactites extends Solitaire{
-	public enum PlayStyle {ONES,TWOS, UNKOWN};
 	
 	Deck deck;
 	Column columns[] = new Column [8];
 	Pile foundations[] = new Pile [4];
 	Pile foundationBases[] = new Pile [4];
 	Pile cells[] = new Pile [2];
-	PlayStyle playStyle;
 	
 	// view classes
 	ColumnView columnViews[] = new ColumnView [8];
@@ -78,10 +76,6 @@ public class Stalactites extends Solitaire{
 			}
 		}
 
-	}
-	
-	public void setPlayStyle(PlayStyle style) {
-		playStyle = style;
 	}
 
 	private void initializeControllers() {
@@ -208,8 +202,6 @@ public class Stalactites extends Solitaire{
 		
 		updateScore(0);
 		updateNumberCardsLeft (48);
-		
-		playStyle = PlayStyle.UNKOWN;
 		
 	}
 	

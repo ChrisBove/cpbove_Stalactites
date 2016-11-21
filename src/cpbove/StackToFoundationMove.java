@@ -1,6 +1,5 @@
 package cpbove;
 
-import cpbove.Stalactites.PlayStyle;
 import ks.common.games.Solitaire;
 import ks.common.model.Card;
 import ks.common.model.Column;
@@ -9,6 +8,7 @@ import ks.common.model.Pile;
 import ks.common.model.Stack;
 
 public class StackToFoundationMove extends Move{
+	public enum PlayStyle {ONES,TWOS, UNKOWN};
 	Stack src;
 	Pile foundation;
 	Pile foundationBase;
