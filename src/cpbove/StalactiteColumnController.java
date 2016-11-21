@@ -2,14 +2,9 @@ package cpbove;
 
 import java.awt.event.MouseEvent;
 
-import heineman.klondike.FlipCardMove;
 import ks.common.controller.SolitaireReleasedAdapter;
-import ks.common.model.BuildablePile;
 import ks.common.model.Card;
 import ks.common.model.Column;
-import ks.common.model.Deck;
-import ks.common.model.Move;
-import ks.common.model.Pile;
 import ks.common.view.CardView;
 import ks.common.view.ColumnView;
 import ks.common.view.Container;

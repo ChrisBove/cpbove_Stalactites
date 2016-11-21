@@ -3,12 +3,10 @@ package cpbove;
 import java.awt.event.MouseEvent;
 
 import ks.common.model.Card;
-import ks.common.model.Column;
 import ks.common.model.Move;
 import ks.common.model.Pile;
 import ks.common.model.Stack;
 import ks.common.view.CardView;
-import ks.common.view.ColumnView;
 import ks.common.view.Container;
 import ks.common.view.PileView;
 import ks.common.view.Widget;

@@ -1,21 +1,16 @@
 package cpbove;
 
-import heineman.Klondike;
-import heineman.klondike.BuildablePileController;
 import ks.client.gamefactory.GameWindow;
 import ks.common.controller.SolitaireMouseMotionAdapter;
 import ks.common.controller.SolitaireReleasedAdapter;
 import ks.common.games.Solitaire;
 import ks.common.games.SolitaireUndoAdapter;
-import ks.common.model.BuildablePile;
 import ks.common.model.Card;
 import ks.common.model.Column;
 import ks.common.model.Deck;
 import ks.common.model.Pile;
-import ks.common.view.BuildablePileView;
 import ks.common.view.CardImages;
 import ks.common.view.ColumnView;
-import ks.common.view.DeckView;
 import ks.common.view.IntegerView;
 import ks.common.view.PileView;
 import ks.launcher.Main;

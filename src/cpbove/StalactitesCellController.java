@@ -2,15 +2,10 @@ package cpbove;
 
 import java.awt.event.MouseEvent;
 
-import heineman.Klondike;
-import heineman.klondike.MoveCardToFoundationMove;
-import heineman.klondike.MoveWasteToFoundationMove;
-import ks.common.model.BuildablePile;
 import ks.common.model.Card;
 import ks.common.model.Column;
 import ks.common.model.Move;
 import ks.common.model.Pile;
-import ks.common.view.BuildablePileView;
 import ks.common.view.CardView;
 import ks.common.view.ColumnView;
 import ks.common.view.Container;

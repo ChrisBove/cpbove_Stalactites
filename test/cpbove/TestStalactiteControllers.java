@@ -2,7 +2,6 @@ package cpbove;
 
 import java.awt.event.MouseEvent;
 
-import junit.framework.TestCase;
 import ks.client.gamefactory.GameWindow;
 import ks.common.model.Card;
 import ks.common.model.Deck;
