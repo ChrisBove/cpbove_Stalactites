@@ -74,7 +74,7 @@ public class Stalactites extends Solitaire{
 	private void initializeControllers() {
 		// Now for each column.
 		for (int i = 0; i < columnViews.length; i++) {
-			columnViews[i].setMouseAdapter (new StalactiteColumnController (this, columnViews[i]));
+			columnViews[i].setMouseAdapter (new StalactitesColumnController (this, columnViews[i]));
 			columnViews[i].setMouseMotionAdapter (new SolitaireMouseMotionAdapter (this));
 			columnViews[i].setUndoAdapter (new SolitaireUndoAdapter(this));
 		}

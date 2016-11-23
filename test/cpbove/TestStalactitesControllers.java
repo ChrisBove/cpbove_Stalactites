@@ -8,7 +8,7 @@ import ks.common.model.Deck;
 import ks.launcher.Main;
 import ks.tests.KSTestCase;
 
-public class TestStalactiteControllers extends KSTestCase {
+public class TestStalactitesControllers extends KSTestCase {
 	
 	public void testColToCellController() {
 		Stalactites game = new Stalactites();

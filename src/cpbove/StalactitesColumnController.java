@@ -10,14 +10,14 @@ import ks.common.view.ColumnView;
 import ks.common.view.Container;
 import ks.common.view.Widget;
 
-public class StalactiteColumnController extends SolitaireReleasedAdapter {
+public class StalactitesColumnController extends SolitaireReleasedAdapter {
 	/** The game. */
 	protected Stalactites theGame;
 
 	/** The Column of interest. */
 	protected ColumnView columnView;
 
-	public StalactiteColumnController(Stalactites theGame, ColumnView columnView) {
+	public StalactitesColumnController(Stalactites theGame, ColumnView columnView) {
 		super(theGame);
 
 		this.theGame = theGame;
